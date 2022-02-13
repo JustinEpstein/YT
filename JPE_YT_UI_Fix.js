@@ -16,7 +16,7 @@ var YtNewUIFix = /** @class */ (function () {
     };
     //
     YtNewUIFix.prototype.applyFix = function () {
-        if (document.body.innerHTML.length === 0) {return;} // empty page can be ignored (in share tab before it's active)
+        //if (document.body.innerHTML.length === 0) {return;} // empty page can be ignored (in share tab before it's active)
         this.addCSS();
         var _this = this;
         window.setInterval(function () {document.querySelector(".html5-video-player").dispatchEvent(_this.mouseMoveEvent)}, 1000);
@@ -90,7 +90,7 @@ var YtNewUIFix = /** @class */ (function () {
         // Progress bar
         css += ".ytp-progress-bar-container {min-height:" + ProgBarH + "px !important;}\n";
         css += ".ytp-progress-bar-container {max-height:" + ProgBarH + "px !important;}\n";
-        css += ".ytp-progress-bar-container {        top: 00px !important;         bottom: 00px !important;}\n"; // Fixes issues when, in regular mode, window width is squeezed tight and the progress bar moves down partially over controls
+        css += ".ytp-progress-bar-container {        top: 00px !important;         bottom: 00px !important;}\n"; // Fixes issues, in regular mode, when window width is squeezed tight and the progress bar moves down partially over controls
         css += ".ytp-progress-bar-container { margin-top: 00px !important;  margin-bottom: 00px !important;}\n";
         css += ".ytp-progress-bar-container { border-top: 00px !important;  border-bottom: 00px !important;}\n";
         css += ".ytp-progress-bar-container {padding-top: 00px !important; padding-bottom: 00px !important;}\n";
@@ -269,23 +269,26 @@ var YtNewUIFix = /** @class */ (function () {
         css += "yt-live-chat-ticker-renderer {display: none !important;}\n";
         //
         // Homepage -
-        css += ".ytd-rich-grid-renderer.style-scope #header {display: none !important;}\n";
+        //css += ".ytd-rich-grid-renderer.style-scope #header {display: none !important;}\n";
         //
         // Homepage - "Recommended movies" shelf
         css += "ytd-rich-section-renderer {display: none !important;}\n";
         //
         // Channel - Top banner
-        css += "div.ytd-c4-tabbed-header-renderer.style-scope.banner-visible-area {display: none !important;}\n";
-        css += ".tp-yt-app-header-layout.style-scope {max-height: 150px !important;}\n";
+        //css += "div.ytd-c4-tabbed-header-renderer.style-scope.banner-visible-area {display: none !important;}\n";
+        //css += ".tp-yt-app-header-layout.style-scope {max-height: 150px !important;}\n";
         //
         // Channel - Recommended video
-        css += ".ytd-item-section-renderer.style-scope  .ytd-channel-video-player-renderer.style-scope {display: none !important;}\n";
+        //css += ".ytd-item-section-renderer.style-scope  .ytd-channel-video-player-renderer.style-scope {display: none !important;}\n";
         //
         // Left Side Menu Grab - There is side menu on YT (same menu when hamburger button is pressed at top-left), this menu can be grabbed and pulled out, but only in the progress bar area (which causes obvious issues).
         css += "#contentContainer {display: none !important;}\n";
         //
+        // Ads in Video Description
+        css += ".ytd-metadata-row-container-renderer.style-scope {display: none !important;}\n";
+        //
         // ???
-        css += ".ytd-feed-filter-chip-bar-renderer {display: none !important;}\n";
+        //css += ".ytd-feed-filter-chip-bar-renderer {display: none !important;}\n";
         //
         // Animations?
         //css += ".ytp-bezel {display: none !important;}\n";
