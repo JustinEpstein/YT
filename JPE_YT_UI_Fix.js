@@ -20,6 +20,8 @@ var YtNewUIFix = /** @class */ (function () {
         this.addCSS();
         var _this = this;
         window.setInterval(function () {document.querySelector(".html5-video-player").dispatchEvent(_this.mouseMoveEvent)}, 1000);
+        window.setInterval(function () {document.querySelector(".ytp-chrome-bottom").dispatchEvent(_this.mouseMoveEvent)}, 1000);
+        window.setInterval(function () {document.querySelector(".ytp-progress-bar-container").dispatchEvent(_this.mouseMoveEvent)}, 1000);
     };
     //
     YtNewUIFix.prototype.addCSS = function () {
@@ -112,8 +114,8 @@ var YtNewUIFix = /** @class */ (function () {
         //
         // Container for progress and control bars
         css += "                                         .ytp-chrome-bottom {        left: 00px !important;                       right: 00px !important;}\n";
-        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { border-left: 12px solid #1B1B1B !important;  margin-right: 12px !important;}\n"; // NOT Fullscreen
-        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: 24px solid #1B1B1B !important;  margin-right: 36px !important;}\n"; //     Fullscreen
+        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { border-left: 12px solid #1B1B1B !important;  border-right: 12px !important; margin-right: 12px !important;}\n"; // NOT Fullscreen
+        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: 24px solid #1B1B1B !important;  border-right: 36px !important; margin-right: 36px !important;}\n"; //     Fullscreen
         //
         // Move SponsorBlock bar
         css += ".html5-video-player:not(.ytp-fullscreen) #previewbar {width: calc(100% - 22px) !important;}\n"; // NOT Fullscreen
