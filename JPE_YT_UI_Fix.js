@@ -106,6 +106,8 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".ytp-chrome-controls { border-top: 00px !important;  border-bottom: 00px !important;}\n";
         css += ".ytp-chrome-controls {padding-top: 00px !important; padding-bottom: 00px !important;}\n";
         //
+        css += ".ytd-miniplayer .ytp-chrome-controls {top: 230px !important;}\n";
+        //
         ///////////////////////////
         //// WIDTH ADJUSTEMNTS ////
         ///////////////////////////
@@ -157,7 +159,6 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".ytp-scrubber-button {width:" + ProgScrubW + "px !important;}\n";
         css += ".ytp-scrubber-button {border-radius: 0px !important;}\n"; // Progress bar selector - Make Square
         css += ".ytp-scrubber-button {transform: translate(4px,4px) !important;}\n"; // Progress bar selector - Adjust
-        //
         //
         //
         return css;
