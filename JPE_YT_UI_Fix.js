@@ -129,8 +129,8 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".html5-video-player.ytp-fullscreen       #previewbar {width: calc(100% - 48px) !important;}\n"; //     Fullscreen
         //
         // Move control bar
-        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-controls {margin-left: 00px !important; margin-right: 12px !important;}\n"; // NOT Fullscreen
-        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-controls {margin-left: 00px !important; margin-right: 36px !important;}\n"; //     Fullscreen
+        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-controls {margin-left: 00px !important; margin-right: 00px !important;}\n"; // NOT Fullscreen
+        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-controls {margin-left: 00px !important; margin-right: 00px !important;}\n"; //     Fullscreen
         //
         ///////////////////////////
         //// OTHER ADJUSTEMNTS ////
