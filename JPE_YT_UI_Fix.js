@@ -5,6 +5,9 @@
 // @include     https://youtube.com*
 // @include     https://youtube.googleapis.com/embed*
 // @include     https://www.youtube-nocookie.com/embed*
+//
+// Source: greasyfork.org/en/scripts/11485-youtube-ui-fix/code
+//
 // ==/UserScript==
 //
 var YtNewUIFix = /** @class */ (function () {
@@ -116,9 +119,10 @@ var YtNewUIFix = /** @class */ (function () {
         css += "ytd-watch-flexy[theater] {width: 100vw !important;}\n"; // Theater mode
         //
         // Container for progress and control bars
+        //css += "                                         .ytp-chrome-bottom { border-left-style: solid !important          border-right-style: solid !important}\n";
         css += "                                         .ytp-chrome-bottom {        left: 00px !important;                       right: 00px !important;}\n";
-        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { border-left: 12px solid #1B1B1B !important;  border-right: 12px !important; margin-right: 12px !important;}\n"; // NOT Fullscreen
-        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: 24px solid #1B1B1B !important;  border-right: 36px !important; margin-right: 36px !important;}\n"; //     Fullscreen
+        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { border-left: 12px solid #1B1B1B !important;  width: calc(100% - 24px) !important; border-right: 12px solid #1B1B1B !important;}\n"; // NOT Fullscreen
+        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: 24px solid #1B1B1B !important;  width: calc(100% - 48px) !important; border-right: 48px solid #1B1B1B !important;}\n"; //     Fullscreen
         //
         // Move SponsorBlock bar
         css += ".html5-video-player:not(.ytp-fullscreen) #previewbar {width: calc(100% - 22px) !important;}\n"; // NOT Fullscreen
