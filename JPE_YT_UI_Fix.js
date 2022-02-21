@@ -124,7 +124,7 @@ var YtNewUIFix = /** @class */ (function () {
         css += "                                         .ytp-chrome-bottom {        left: 00px !important;                       right: 00px !important;}\n";
         css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { border-left: " + NonFullCPBord + "px solid #1B1B1B !important; border-right: " + NonFullCPBord + "px solid #1B1B1B !important;}\n"; // NOT Fullscreen
         css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { width: calc(100% - " + (NonFullCPBord + NonFullCPBord) + "px) !important;}\n"; // NOT Fullscreen
-        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: " + FullCPBord + "px solid #1B1B1B !important; border-right: " + FullCPBord + FullCPBord + "px solid #1B1B1B !important;}\n"; //     Fullscreen
+        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: " + FullCPBord + "px solid #1B1B1B !important; border-right: " + (FullCPBord + FullCPBord) + "px solid #1B1B1B !important;}\n"; //     Fullscreen
         css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { width: calc(100% - " + (FullCPBord + FullCPBord) + "px) !important;}\n"; //     Fullscreen
         //
         // Move SponsorBlock bar
@@ -166,6 +166,7 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".ytp-scrubber-button {background-color: #cc0000 !important;}\n"; // Progress bar selector - Color
         css += ".ytp-scrubber-button {height:" + ProgBarH + "px !important;}\n";
         css += ".ytp-scrubber-button {width:" + ProgScrubW + "px !important;}\n";
+        css += ".ytp-scrubber-button {margin-left:" + (ProgScrubW/2) + "px !important;}\n";
         css += ".ytp-scrubber-button {border-radius: 0px !important;}\n"; // Progress bar selector - Make Square
         //
         // Control Bar
