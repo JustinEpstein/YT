@@ -50,11 +50,13 @@ var YtNewUIFix = /** @class */ (function () {
     var ControlHeight = 50;
     var ConProgH = ProgBarH + ControlHeight;
     var ProgScrubW = 5;
+    var NonFullCPBord = 12;
+    var FullCPBord = 24;
     //
     YtNewUIFix.prototype.moveControls = function (css) {
         //
         // Increase height of video container by height of progress and control bar (or 100% of vertical viewing area, if smaller)
-        css += "#movie_player {min-height: min(calc(100% + " + (ConProgH + 0) + "px),100vh) !important;}\n";
+        css += "#movie_player {min-height: min(calc(100% + " + (ConProgH + 15) + "px),100vh) !important;}\n";
         //
         // Make Video Visible
         css += ".html5-video-player .html5-video-container {height: 100%; !important}";
@@ -118,15 +120,16 @@ var YtNewUIFix = /** @class */ (function () {
         //
         css += "ytd-watch-flexy[theater] {width: 100vw !important;}\n"; // Theater mode
         //
-        // Container for progress and control bars
-        //css += "                                         .ytp-chrome-bottom { border-left-style: solid !important          border-right-style: solid !important}\n";
+        // Progress and Control Container
         css += "                                         .ytp-chrome-bottom {        left: 00px !important;                       right: 00px !important;}\n";
-        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { border-left: 12px solid #1B1B1B !important;  width: calc(100% - 24px) !important; border-right: 12px solid #1B1B1B !important;}\n"; // NOT Fullscreen
-        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: 24px solid #1B1B1B !important;  width: calc(100% - 48px) !important; border-right: 48px solid #1B1B1B !important;}\n"; //     Fullscreen
+        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { border-left: " + NonFullCPBord + "px solid #1B1B1B !important; border-right: " + NonFullCPBord + "px solid #1B1B1B !important;}\n"; // NOT Fullscreen
+        css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom { width: calc(100% - " + (NonFullCPBord + NonFullCPBord) + "px) !important;}\n"; // NOT Fullscreen
+        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { border-left: " + FullCPBord + "px solid #1B1B1B !important; border-right: " + FullCPBord + FullCPBord + "px solid #1B1B1B !important;}\n"; //     Fullscreen
+        css += ".html5-video-player.ytp-fullscreen       .ytp-chrome-bottom { width: calc(100% - " + (FullCPBord + FullCPBord) + "px) !important;}\n"; //     Fullscreen
         //
         // Move SponsorBlock bar
-        css += ".html5-video-player:not(.ytp-fullscreen) #previewbar {width: calc(100% - 22px) !important;}\n"; // NOT Fullscreen
-        css += ".html5-video-player.ytp-fullscreen       #previewbar {width: calc(100% - 48px) !important;}\n"; //     Fullscreen
+        css += ".html5-video-player:not(.ytp-fullscreen) #previewbar {width: calc(100% - 0px) !important;}\n"; // NOT Fullscreen
+        css += ".html5-video-player.ytp-fullscreen       #previewbar {width: calc(100% - 0px) !important;}\n"; //     Fullscreen
         //
         // Move control bar
         css += ".html5-video-player:not(.ytp-fullscreen) .ytp-chrome-controls {margin-left: 00px !important; margin-right: 00px !important;}\n"; // NOT Fullscreen
@@ -158,13 +161,15 @@ var YtNewUIFix = /** @class */ (function () {
         css += "#startSegmentButton #startSegmentImage {height: 50% !important;}\n"; // Make SponsorSkip button same height as other buttons
         //
         // Progress bar adjustments
+        css += ".ytp-scrubber-container {top: 0px !important; bottom: 0px !important left: 0px !important right: 0px !important}\n"; // Remove progress bar adjustments
         css += ".ytp-swatch-background-color {background-color: #556889 !important;}\n"; // Progress bar color
         css += ".ytp-scrubber-button {background-color: #cc0000 !important;}\n"; // Progress bar selector - Color
         css += ".ytp-scrubber-button {height:" + ProgBarH + "px !important;}\n";
         css += ".ytp-scrubber-button {width:" + ProgScrubW + "px !important;}\n";
         css += ".ytp-scrubber-button {border-radius: 0px !important;}\n"; // Progress bar selector - Make Square
-        css += ".ytp-scrubber-button {transform: translate(4px,4px) !important;}\n"; // Progress bar selector - Adjust
         //
+        // Control Bar
+        css += ".ytp-chrome-controls .ytp-play-button {max-width: 45px !important;}\n"; // Set Play Button Maximum Width (max)
         //
         return css;
     };
