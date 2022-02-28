@@ -119,6 +119,7 @@ var YtNewUIFix = /** @class */ (function () {
         ///////////////////////////
         //
         css += "ytd-watch-flexy[theater] {width: 100vw !important;}\n"; // Theater mode
+        css += ".ytp-progress-bar-container {width: calc(100% + 1px) !important;}\n"; // Sometimes, if the window is too narrow, the last chapter can cover the play button
         //
         // Progress and Control Container
         css += "                                         .ytp-chrome-bottom {        left: 00px !important;                       right: 00px !important;}\n";
@@ -150,6 +151,7 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".ytp-chapter-hover-container {transform: scaleY(1) !important;}\n"; // Chapters on Progress Bar
         css += "#previewbar                  {transform: scaleY(1) !important;}\n"; // SponsorSkip
         css += ".ytp-scrubber-button         {transform: scaleY(1) !important;}\n"; // Progress bar selector
+        css += ".ytp-timed-markers-container {transform: scaleY(1) !important;}\n"; // Timed Markers
         //
         // Volume
         css += ".ytp-volume-panel, .ytp-volume-control-hover {min-width: 52px; margin-right: 15px !important;}"; // Make volume slider always be visible
