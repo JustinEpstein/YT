@@ -6,7 +6,7 @@
 // @include     https://youtube.googleapis.com/embed*
 // @include     https://www.youtube-nocookie.com/embed*
 //
-// Source: greasyfork.org/en/scripts/11485-youtube-ui-fix/code
+// Original Source: greasyfork.org/en/scripts/11485-youtube-ui-fix/code
 //
 // ==/UserScript==
 //
@@ -155,6 +155,7 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".ytp-volume-panel, .ytp-volume-control-hover {min-width: 52px; margin-right: 15px !important;}"; // Make volume slider always be visible
         css += ".ytp-mute-button {padding-top: 00px !important; padding-bottom: 00px !important;}"; // Fix Volume/speaker logo moving down when control height is made small
         //
+        //
         css += ".ytp-volume-slider {min-height: 00px !important; height: 100% !important;}"; // Adjust volume slider to vertical middle of control bar
         css += ".ytp-chrome-controls {line-height: " + ControlHeight + "px !important;}"; // Adjust buttons to vertical middle of control bar
         css += ".ytp-time-display    {line-height: " + ControlHeight + "px !important;}"; // Adjust time to vertical middle of control bar
@@ -171,6 +172,20 @@ var YtNewUIFix = /** @class */ (function () {
         //
         // Control Bar
         css += ".ytp-chrome-controls .ytp-play-button {max-width: 45px !important;}\n"; // Set Play Button Maximum Width (max)
+        //
+        // Volume Width Increase (not working right now)
+        //var VolWidthInc = 50;
+        //css += ".ytp-volume-area {width: " + (115 + VolWidthInc) + "px !important;}\n"; // 115
+        //css += ".ytp-volume-panel {width: " + (52 + VolWidthInc) + "px !important;}\n"; // 52
+        //css += ".ytp-volume-slider {width: " + (52 + VolWidthInc) + "px) !important;}\n"; // 52
+        //css += ".ytp-volume-slider-handle::before {width: " + (64 + VolWidthInc) + "px) !important;}\n"; // 64
+        //css += ".ytp-volume-slider-handle::after {width: " + (64 + VolWidthInc) + "px) !important;}\n"; // 64
+        //
+        // Preview mode, move progess bar (hover over videos on homepage)
+        css += "#inline-preview-player:not(.ytp-large-width-mode) .ytp-progress-bar-container {position: relative !important; transform: translateY(-" + ConProgH + "px) !important;}\n";
+        //
+        // Preview mode, move progess bar (pop up player on homepage)
+        css += ".ytp-player-minimized .ytp-progress-bar-container {position: relative !important; transform: translateY(-" + ConProgH + "px) !important;}\n";
         //
         return css;
     };
