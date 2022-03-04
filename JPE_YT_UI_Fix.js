@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        JPE YT UI Fix
+// @name        YT - JPE UI Fix
 // @homepageURL https://github.com/JustinEpstein/YT/blob/main/JPE_YT_UI_Fix.js
 // @include     https://www.youtube.com*
 // @include     https://youtube.com*
@@ -10,6 +10,54 @@
 //
 // ==/UserScript==
 //
+// Auto Theater Mode
+window.addEventListener("yt-navigate-finish", function(event) {
+    var newPlayer = document.querySelector('button.ytp-size-button')
+    var timer = setTimeout(function() {
+        if ( newPlayer && null === document.getElementById('player-theater-container').firstChild ) {
+            newPlayer.click()
+        }
+    }, 200)
+    });
+//
+// Auto Expand Video Description
+(function() {
+    'use strict';
+  window.addEventListener('yt-page-data-updated', function () {
+    var checkExist = setInterval(function() {
+      var ytMeta = document.querySelector('#meta-contents #more');
+      if(ytMeta){
+         (ytMeta).click();
+          clearInterval(checkExist);
+       }
+    }, 100);
+  });
+})();
+//
+// Turn Off Autoplay
+var var_interval_id = window.setInterval( function( window ) {
+    let a = window.document.querySelector( "button.ytp-button[data-tooltip-target-id='ytp-autonav-toggle-button']" ); // get the button
+    if ( a.getAttribute( "aria-label" ) == "Autoplay is on" ) {
+        a.click( ); // disable autoplay next if enabled
+    }
+    if ( a.getAttribute( "aria-label" ) == "Autoplay is off" ) {
+        window.clearInterval( var_interval_id ); // end script once done
+    }
+}, 1024, window );
+//
+// Close Guide
+// var var_hamburger = window.setInterval( function( window ) {
+//     let a = window.document.querySelector( "yt-icon-button[id='guide-icon']" );
+//     let b = window.document.querySelector( "button[id='button']" );
+//     if ( b.getAttribute( "aria-pressed" ) == "true" ) {
+//         a.click( );
+//     }
+//     if ( b.getAttribute( "aria-pressed" ) == "false" ) {
+//         window.clearInterval( var_hamburger ); // end script once done
+//     }
+// }, 1024, window );
+//
+// Move Progress and Control Bar Below Video
 var YtNewUIFix = /** @class */ (function () {
     function YtNewUIFix() {
         var _this = this;
@@ -31,8 +79,11 @@ var YtNewUIFix = /** @class */ (function () {
     YtNewUIFix.prototype.addCSS = function () {
         var css = "";
         var StyleId = "YoutubeNewUIFix-Style";
+        //
+        //css = this.TheaterMode(css);
         css = this.removeCrap(css);
         css = this.moveControls(css);
+        //
         var style = document.getElementById(StyleId);
         if (style && style.parentNode) {
             style.parentNode.removeChild(style);
@@ -313,7 +364,9 @@ var YtNewUIFix = /** @class */ (function () {
         //css += ".ytd-item-section-renderer.style-scope  .ytd-channel-video-player-renderer.style-scope {display: none !important;}\n";
         //
         // Left Side Menu Grab - There is side menu on YT (same menu when hamburger button is pressed at top-left), this menu can be grabbed and pulled out, but only in the progress bar area (which causes obvious issues).
+        //css += "#guide-button {display: none !important;}\n";
         css += "#contentContainer {display: none !important;}\n";
+        css += "#Guide {display: none !important;}\n";
         //
         // Ads in Video Description
         css += ".ytd-metadata-row-container-renderer.style-scope {display: none !important;}\n";
