@@ -5,8 +5,8 @@
 // @include     https://youtube.com*
 // @include     https://youtube.googleapis.com/embed*
 // @include     https://www.youtube-nocookie.com/embed*
-//
-// Original Source: greasyfork.org/en/scripts/11485-youtube-ui-fix/code
+// @description null
+// @version     null
 //
 // ==/UserScript==
 //
@@ -286,6 +286,7 @@ var YtNewUIFix = /** @class */ (function () {
         //
         // OVER VIDEO - After Video - After video cards (everything that appears in the video area after the video ends)
         css += ".ytp-endscreen-content {display: none !important;}\n";
+        css += ".autonav-endscreen {display: none !important;}\n";
         //
         // OVER VIDEO - After Video - "Thanks for Tuning in" overlay card for live videos
         css += ".ytp-offline-slate-bar {display: none !important;}\n";
