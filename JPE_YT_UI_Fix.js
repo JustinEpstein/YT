@@ -103,18 +103,22 @@ var YtNewUIFix = /** @class */ (function () {
     var ProgScrubW = 5;
     var NonFullCPBord = 12;
     var FullCPBord = 24;
+    var VideoControlPad = 15;
     //
     YtNewUIFix.prototype.moveControls = function (css) {
         //
         // Increase height of video container by height of progress and control bar (or 100% of vertical viewing area, if smaller)
-        css += "#movie_player {min-height: min(calc(100% + " + (ConProgH + 15) + "px),100vh) !important;}\n";
+        css += "#movie_player {min-height: min(calc(100% + " + (ConProgH + VideoControlPad) + "px),100vh) !important;}\n";
         //
         // Make Video Visible
         css += ".html5-video-player .html5-video-container {height: 100%; !important}";
         //css += ".html5-video-container {height: 100% !important;}";
         //
         // Decrease height of video by height of progress and control bar
-        css += ".html5-main-video {max-height: calc(100% - " + ConProgH + "px) !important;}\n";
+        //css += ".html5-main-video {max-height: calc(100% - " + ConProgH + "px) !important;}\n";
+        css += ".html5-video-container {max-height: calc(100% - " + (ConProgH + VideoControlPad) + "px) !important;}\n";
+        css += ".html5-main-video {max-height: 100% !important;}\n";
+        css += ".html5-main-video {min-height: 100% !important;}\n";
         //
         // Move video to top of video container
         css += ".html5-main-video {top: 00px !important;}\n";
@@ -287,6 +291,7 @@ var YtNewUIFix = /** @class */ (function () {
         // OVER VIDEO - After Video - After video cards (everything that appears in the video area after the video ends)
         css += ".ytp-endscreen-content {display: none !important;}\n";
         css += ".autonav-endscreen {display: none !important;}\n";
+        css += ".ytp-autonav-endscreen-link-container {display: none !important;}\n";
         //
         // OVER VIDEO - After Video - "Thanks for Tuning in" overlay card for live videos
         css += ".ytp-offline-slate-bar {display: none !important;}\n";
@@ -326,6 +331,9 @@ var YtNewUIFix = /** @class */ (function () {
         //
         // Outside Video - Other - Clip button
         css += "ytd-button-renderer.size-default.style-default.force-icon-button.ytd-menu-renderer.style-scope:nth-of-type(3) {display: none !important;}\n";
+        //
+        // Outside Video - Other - Sponsor Button
+        css += "#categoryPill {display: none !important;}\n";
         //
         // Outside Video - Other - Tag links/text (the hashtags below the video, #technology, #pc, etc.)
         css += ".ytd-video-primary-info-renderer.style-scope.super-title {display: none !important;}\n";
