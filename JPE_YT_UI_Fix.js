@@ -10,6 +10,9 @@
 //
 // ==/UserScript==
 //
+// Stop Autoplay of Videos on Channel Pages
+// https://gist.github.com/gregilo/f2c034c2a91fba10a2de868e2b490b6c
+//
 // Auto Theater Mode
 window.addEventListener("yt-navigate-finish", function(event) {
     var newPlayer = document.querySelector('button.ytp-size-button')
@@ -45,17 +48,18 @@ var var_interval_id = window.setInterval( function( window ) {
     }
 }, 1024, window );
 //
-// Close Guide
-// var var_hamburger = window.setInterval( function( window ) {
-//     let a = window.document.querySelector( "yt-icon-button[id='guide-icon']" );
-//     let b = window.document.querySelector( "button[id='button']" );
-//     if ( b.getAttribute( "aria-pressed" ) == "true" ) {
-//         a.click( );
-//     }
-//     if ( b.getAttribute( "aria-pressed" ) == "false" ) {
-//         window.clearInterval( var_hamburger ); // end script once done
-//     }
-// }, 1024, window );
+// Closes Guide on Homepage
+var var_hamburger = window.setInterval( function( window ) {
+    let OpenOrClose = window.document.querySelector( "button[aria-label='Guide']" );
+    let Button2Click = window.document.querySelector( "#guide-button.ytd-masthead" );
+
+    if ( OpenOrClose.getAttribute( "aria-pressed" ) == "true" ) {
+        Button2Click.click( );
+    }
+    if ( OpenOrClose.getAttribute( "aria-pressed" ) == "false" ) {
+        window.clearInterval( var_hamburger ); // end script once done
+    }
+}, 1024, window );
 //
 // Move Progress and Control Bar Below Video
 var YtNewUIFix = /** @class */ (function () {
@@ -103,12 +107,12 @@ var YtNewUIFix = /** @class */ (function () {
     var ProgScrubW = 5;
     var NonFullCPBord = 12;
     var FullCPBord = 24;
-    var VideoControlPad = 15;
+    var VideoControlPad = 5;
     //
     YtNewUIFix.prototype.moveControls = function (css) {
         //
         // Increase height of video container by height of progress and control bar (or 100% of vertical viewing area, if smaller)
-        css += "#movie_player {min-height: min(calc(100% + " + (ConProgH + VideoControlPad) + "px),100vh) !important;}\n";
+        css += "#movie_player {min-height: min(calc(100% + " + (ConProgH + VideoControlPad) + "px),min(100vh,80vw)) !important;}\n";
         //
         // Make Video Visible
         css += ".html5-video-player .html5-video-container {height: 100%; !important}";
@@ -239,10 +243,20 @@ var YtNewUIFix = /** @class */ (function () {
         //css += ".ytp-volume-slider-handle::after {width: " + (64 + VolWidthInc) + "px) !important;}\n"; // 64
         //
         // Preview mode, move progess bar (hover over videos on homepage)
-        css += "#inline-preview-player:not(.ytp-large-width-mode) .ytp-progress-bar-container {position: relative !important; transform: translateY(-" + ConProgH + "px) !important;}\n";
+        //css += "#inline-preview-player:not(.ytp-large-width-mode) .ytp-progress-bar-container {position: relative !important; transform: translateY(-" + ConProgH + "px) !important;}\n";
         //
         // Preview mode, move progess bar (pop up player on homepage)
-        css += ".ytp-player-minimized .ytp-progress-bar-container {position: relative !important; transform: translateY(-" + ConProgH + "px) !important;}\n";
+        //css += ".ytp-player-minimized .ytp-progress-bar-container {position: relative !important; transform: translateY(-" + ConProgH + "px) !important;}\n";
+        //
+        // Prevent Home Screen Popup Previews on Hover (still provides GIF preview)
+        css += "ytd-video-preview {pointer-events: none !important;}\n";
+        css += "ytd-video-preview[active] {pointer-events: none !important;}\n";
+        css += "ytd-video-preview[active] {display: none !important;}\n";
+        //
+        // Remove Homescreen miniplayer
+        css += ".ytp-miniplayer-ui          {display: none !important;}\n";
+        css += ".miniplayer                 {display: none !important;}\n";
+        css += ".ytp-cued-thumbnail-overlay {display: none !important;}\n";
         //
         return css;
     };
@@ -287,6 +301,9 @@ var YtNewUIFix = /** @class */ (function () {
         //
         // OVER VIDEO - DURING VIDEO - Pause/play icons fade over video
         css += ".ytp-bezel-text-hide {display: none !important;}\n";
+        //
+        // OVER VIDEO - DURING VIDEO - SponsorBlock Notice at Beginning of Video
+        css += ".sponsorSkipNoticeFadeIn.sponsorSkipNoticeTableContainer {display: none !important;}\n";
         //
         // OVER VIDEO - After Video - After video cards (everything that appears in the video area after the video ends)
         css += ".ytp-endscreen-content {display: none !important;}\n";
@@ -380,8 +397,11 @@ var YtNewUIFix = /** @class */ (function () {
         // Ads in Video Description
         css += ".ytd-metadata-row-container-renderer.style-scope {display: none !important;}\n";
         //
+        // Category buttons at top of homepage
+        css += "#header .ytd-rich-grid-renderer.style-scope {display: none !important;}\n";
+        //
         // ???
-        //css += ".ytd-feed-filter-chip-bar-renderer {display: none !important;}\n";
+        css += ".ytd-video-primary-info-renderer.style-scope.yt-simple-endpoint {display: none !important;}\n";
         //
         // Animations?
         //css += ".ytp-bezel {display: none !important;}\n";
