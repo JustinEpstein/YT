@@ -391,14 +391,18 @@ var YtNewUIFix = /** @class */ (function () {
         //
         // Left Side Menu Grab - There is side menu on YT (same menu when hamburger button is pressed at top-left), this menu can be grabbed and pulled out, but only in the progress bar area (which causes obvious issues).
         //css += "#guide-button {display: none !important;}\n";
-        css += "#contentContainer {display: none !important;}\n";
-        css += "#Guide {display: none !important;}\n";
+        //css += "#contentContainer {display: none !important;}\n";
+        //css += "#Guide {display: none !important;}\n";
         //
         // Ads in Video Description
         css += ".ytd-metadata-row-container-renderer.style-scope {display: none !important;}\n";
         //
         // Category buttons at top of homepage
         css += "#header .ytd-rich-grid-renderer.style-scope {display: none !important;}\n";
+        //
+        // Top-Left Guide Button
+        css += "#guide-button {display: none !important;}\n";
+        css += "#container.ytd-masthead {padding-left: 0px !important;}\n";
         //
         // ???
         css += ".ytd-video-primary-info-renderer.style-scope.yt-simple-endpoint {display: none !important;}\n";
