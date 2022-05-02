@@ -133,6 +133,7 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".video-stream.html5-main-video {object-fit: contain !important;}\n";
         css += ".video-stream.html5-main-video {height: 100% !important;}\n";
         css += ".video-stream.html5-main-video {width: 100% !important;}\n";
+        css += ".video-stream.html5-main-video {left: 0px !important;}\n";
         //
         // Remove padding between bottom of controls and video title
         css += "#columns.ytd-watch-flexy {padding-top: 00px !important;}\n";
