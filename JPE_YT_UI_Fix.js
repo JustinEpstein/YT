@@ -127,11 +127,12 @@ var YtNewUIFix = /** @class */ (function () {
         css += "ytd-watch-flexy:not([theater]) #player                   {margin-bottom: " + (ConProgH - 18) + "px !important;}\n"; // Regular mode
         css += "ytd-watch-flexy[theater]       #player-theater-container {margin-bottom: " + (ConProgH - 18) + "px !important;}\n"; // Theater mode
         //
-        // Theater Mode Adjustments
+        // Theater Mode Adjustments (player-theater-container > player-container > ytd-player > container > #movie_player > .html5-video-container > .video-stream.html5-main-video)
         css += ".html5-video-container {min-height: calc(100% - " + ConProgH + "px) !important;}\n";
         css += ".html5-video-container {max-height: calc(100% - " + ConProgH + "px) !important;}\n";
         css += ".video-stream.html5-main-video {object-fit: contain !important;}\n";
         css += ".video-stream.html5-main-video {height: 100% !important;}\n";
+        css += ".video-stream.html5-main-video {width: 100% !important;}\n";
         //
         // Remove padding between bottom of controls and video title
         css += "#columns.ytd-watch-flexy {padding-top: 00px !important;}\n";
