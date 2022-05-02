@@ -10,6 +10,8 @@
 //
 // ==/UserScript==
 //
+// https://www.youtube.com/watch?v=Wbl9Pl6Smbc
+//
 // Stop Autoplay of Videos on Channel Pages
 // https://gist.github.com/gregilo/f2c034c2a91fba10a2de868e2b490b6c
 //
@@ -103,34 +105,33 @@ var YtNewUIFix = /** @class */ (function () {
     ///////////////////////////////////////////////////////
     var ProgBarH = 25;
     var ControlHeight = 50;
-    var ConProgH = ProgBarH + ControlHeight;
+    var VideoControlPad = 5;
+    var ConProgH = ProgBarH + ControlHeight + VideoControlPad;
     var ProgScrubW = 5;
     var NonFullCPBord = 12;
     var FullCPBord = 24;
-    var VideoControlPad = 5;
     //
     YtNewUIFix.prototype.moveControls = function (css) {
         //
         // Increase height of video container by height of progress and control bar (or 100% of vertical viewing area, if smaller)
-        css += "#movie_player {min-height: min(calc(100% + " + (ConProgH + VideoControlPad) + "px),min(100vh,80vw)) !important;}\n";
-        //
-        // Make Video Visible
-        css += ".html5-video-player .html5-video-container {height: 100%; !important}";
-        //css += ".html5-video-container {height: 100% !important;}";
+        css += "#movie_player {min-height: min(calc(100% + " + ConProgH + "px),min(100vh,70vw)) !important;}\n";
+        //css += "#movie_player {max-height: min(calc(100% + " + ConProgH + "px),min(100vh,70vw)) !important;}\n";
         //
         // Decrease height of video by height of progress and control bar
-        //css += ".html5-main-video {max-height: calc(100% - " + ConProgH + "px) !important;}\n";
-        css += ".html5-video-container {max-height: calc(100% - " + (ConProgH + VideoControlPad) + "px) !important;}\n";
-        css += ".html5-main-video {max-height: 100% !important;}\n";
-        css += ".html5-main-video {min-height: 100% !important;}\n";
+        css += ".html5-main-video {min-height: calc(100% - " + ConProgH + "px) !important;}\n";
         //
         // Move video to top of video container
         css += ".html5-main-video {top: 00px !important;}\n";
-        //css += ".html5-main-video {bottom: " + ConProgH + "px) !important;}\n";
         //
-        // Remove bottom margin of video container
-        css += "ytd-watch-flexy:not([theater]) #player                   {margin-bottom: " + ConProgH + "px !important;}\n"; // Regular mode
-        css += "ytd-watch-flexy[theater]       #player-theater-container {margin-bottom: " + ConProgH + "px !important;}\n"; // Theater mode
+        // Add bottom margin to video container
+        css += "ytd-watch-flexy:not([theater]) #player                   {margin-bottom: " + (ConProgH - 18) + "px !important;}\n"; // Regular mode
+        css += "ytd-watch-flexy[theater]       #player-theater-container {margin-bottom: " + (ConProgH - 18) + "px !important;}\n"; // Theater mode
+        //
+        // Theater Mode Adjustments
+        css += ".html5-video-container {min-height: calc(100% - " + ConProgH + "px) !important;}\n";
+        css += ".html5-video-container {max-height: calc(100% - " + ConProgH + "px) !important;}\n";
+        css += ".video-stream.html5-main-video {object-fit: contain !important;}\n";
+        css += ".video-stream.html5-main-video {height: 100% !important;}\n";
         //
         // Remove padding between bottom of controls and video title
         css += "#columns.ytd-watch-flexy {padding-top: 00px !important;}\n";
