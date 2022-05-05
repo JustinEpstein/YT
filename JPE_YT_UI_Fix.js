@@ -110,6 +110,7 @@ var YtNewUIFix = /** @class */ (function () {
     var ProgScrubW = 5;
     var NonFullCPBord = 12;
     var FullCPBord = 24;
+    var VidTitleUp = 18;
     //
     YtNewUIFix.prototype.moveControls = function (css) {
         //
@@ -124,8 +125,8 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".html5-main-video {top: 00px !important;}\n";
         //
         // Add bottom margin to video container
-        css += "ytd-watch-flexy:not([theater]) #player                   {margin-bottom: " + (ConProgH - 18) + "px !important;}\n"; // Regular mode
-        css += "ytd-watch-flexy[theater]       #player-theater-container {margin-bottom: " + (ConProgH - 18) + "px !important;}\n"; // Theater mode
+        css += "ytd-watch-flexy:not([theater]) #player                   {margin-bottom: " + (ConProgH - VidTitleUp) + "px !important;}\n"; // Regular mode
+        css += "ytd-watch-flexy[theater]       #player-theater-container {margin-bottom: " + (ConProgH - VidTitleUp) + "px !important;}\n"; // Theater mode
         //
         // Theater Mode Adjustments (player-theater-container > player-container > ytd-player > container > #movie_player > .html5-video-container > .video-stream.html5-main-video)
         css += ".html5-video-container {min-height: calc(100% - " + ConProgH + "px) !important;}\n";
@@ -135,8 +136,11 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".video-stream.html5-main-video {width: 100% !important;}\n";
         css += ".video-stream.html5-main-video {left: 0px !important;}\n";
         //
-        // Remove padding between bottom of controls and video title
-        css += "#columns.ytd-watch-flexy {padding-top: 00px !important;}\n";
+        // Set padding between bottom of controls and video title
+        css += "#columns.ytd-watch-flexy {padding-top: 10px !important;}\n";
+        css += "h1.ytd-watch-metadata {padding-top: 10px !important;}\n";
+        css += "h1.ytd-watch-metadata {font-size: medium !important;}\n";
+        css += ".ytd-watch-metadata[id=description-and-actions] {font-size: small !important;}\n";
         //
         ///////////////////////////////////////////////////////
         ////////////// PROGRESS AND CONTROL BARS //////////////
@@ -233,6 +237,7 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".ytp-scrubber-button {width:" + ProgScrubW + "px !important;}\n";
         css += ".ytp-scrubber-button {margin-left:" + (ProgScrubW/2) + "px !important;}\n";
         css += ".ytp-scrubber-button {border-radius: 0px !important;}\n"; // Progress bar selector - Make Square
+        //css += ".ytp-tooltip.ytp-bottom.ytp-preview {top: 500px !important;}\n"; // Move selection preview closer to progress bar
         //
         // Control Bar
         css += ".ytp-chrome-controls .ytp-play-button {max-width: 45px !important;}\n"; // Set Play Button Maximum Width (max)
@@ -305,6 +310,10 @@ var YtNewUIFix = /** @class */ (function () {
         // OVER VIDEO - DURING VIDEO - Pause/play icons fade over video
         css += ".ytp-bezel-text-hide {display: none !important;}\n";
         //
+        // OVER VIDEO - DURING VIDEO - Ad Buttons and Links
+        css += ".ytp-ad-player-overlay-instream-info {display: none !important;}\n";
+        css += ".ytp-ad-player-overlay-flyout-cta {display: none !important;}\n";
+        //
         // OVER VIDEO - DURING VIDEO - SponsorBlock Notice at Beginning of Video
         css += ".sponsorSkipNoticeFadeIn.sponsorSkipNoticeTableContainer {display: none !important;}\n";
         //
@@ -355,8 +364,21 @@ var YtNewUIFix = /** @class */ (function () {
         // Outside Video - Other - Sponsor Button
         css += "#categoryPill {display: none !important;}\n";
         //
+        // Outside Video - Other - YouTube Premium Popup
+        css += ".ytd-popup-container {display: none !important;}\n";
+        //
+        // Outside Video - Other - Merchandise Shelf
+        css += "ytd-merch-shelf-renderer {display: none !important;}\n";
+        //
+        // Outside Video - Other - Weird Comment Box Link
+        css += ".ytd-watch-metadata[id=comment-teaser] {display: none !important;}\n";
+        //
         // Outside Video - Other - Tag links/text (the hashtags below the video, #technology, #pc, etc.)
         css += ".ytd-video-primary-info-renderer.style-scope.super-title {display: none !important;}\n";
+        //
+        // Outside Video - Video Recommendation List - Ads and Other Garbage
+        css += ".ytd-action-companion-ad-renderer {display: none !important;}\n";
+        css += "ytd-promoted-sparkles-web-renderer {display: none !important;}\n";
         //
         // Outside Video - Video Recommendation List - "Watch Later" and "Watchlist" overlay buttons
         css += "#hover-overlays {display: none !important;}\n";
