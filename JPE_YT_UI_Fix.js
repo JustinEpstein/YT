@@ -15,7 +15,7 @@
 // Stop Autoplay of Videos on Channel Pages
 // https://gist.github.com/gregilo/f2c034c2a91fba10a2de868e2b490b6c
 //
-// Auto Theater Mode
+// Auto Theater Mode - Works in FF, does not work in Chrome, Edge
 window.addEventListener("yt-navigate-finish", function(event) {
     var newPlayer = document.querySelector('button.ytp-size-button')
     var timer = setTimeout(function() {
@@ -25,7 +25,7 @@ window.addEventListener("yt-navigate-finish", function(event) {
     }, 200)
     });
 //
-// Auto Expand Video Description
+// Auto Expand Video Description - Works in FF and Chrome, does not work in Edge
 (function() {
     'use strict';
   window.addEventListener('yt-page-data-updated', function () {
@@ -86,7 +86,6 @@ var YtNewUIFix = /** @class */ (function () {
         var css = "";
         var StyleId = "YoutubeNewUIFix-Style";
         //
-        //css = this.TheaterMode(css);
         css = this.removeCrap(css);
         css = this.moveControls(css);
         //
@@ -137,10 +136,10 @@ var YtNewUIFix = /** @class */ (function () {
         css += ".video-stream.html5-main-video {left: 0px !important;}\n";
         //
         // Set padding between bottom of controls and video title
-        css += "#columns.ytd-watch-flexy {padding-top: 10px !important;}\n";
-        css += "h1.ytd-watch-metadata {padding-top: 10px !important;}\n";
-        css += "h1.ytd-watch-metadata {font-size: medium !important;}\n";
-        css += ".ytd-watch-metadata[id=description-and-actions] {font-size: small !important;}\n";
+        //css += "#columns.ytd-watch-flexy {padding-top: 10px !important;}\n";
+        css += "h1.ytd-watch-metadata {padding-top: 5px !important;}\n";
+        //css += "h1.ytd-watch-metadata {font-size: medium !important;}\n";
+        //css += ".ytd-watch-metadata[id=description-and-actions] {font-size: small !important;}\n";
         //
         ///////////////////////////////////////////////////////
         ////////////// PROGRESS AND CONTROL BARS //////////////
@@ -352,6 +351,9 @@ var YtNewUIFix = /** @class */ (function () {
         // Outside Video - Other - "Context" box below videos (covid, election, etc.)
         css += "#clarify-box {display: none !important;}\n";
         //
+        // Outside Video - Other - "# ON TRENDING"
+        css += "#super-title .yt-formatted-string.style-scope.yt-simple-endpoint {display: none !important;}\n";
+        //
         // Outside Video - Other - Notification bell button
         css += ".ytd-subscription-notification-toggle-button-renderer {display: none !important;}\n";
         //
@@ -365,7 +367,7 @@ var YtNewUIFix = /** @class */ (function () {
         css += "#categoryPill {display: none !important;}\n";
         //
         // Outside Video - Other - YouTube Premium Popup
-        css += ".ytd-popup-container {display: none !important;}\n";
+        //css += ".ytd-popup-container {display: none !important;}\n";
         //
         // Outside Video - Other - Merchandise Shelf
         css += "ytd-merch-shelf-renderer {display: none !important;}\n";
